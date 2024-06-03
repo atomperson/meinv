@@ -52,6 +52,9 @@ const folderAndFileList = getChromePath()
 export default () => {
   return {
     body: JSON.stringify(folderAndFileList),
+    headers: {
+        'Content-Type': 'application/json;charset=UTF-8'
+    },
     status: 200
   }
 }
