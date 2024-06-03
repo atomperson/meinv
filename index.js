@@ -38,11 +38,11 @@ function getAllFilesInfo(dirPath) {
     return itemsInfo;
 }
  
-const folderAndFileList = getAllFilesInfo('/app/.cache/puppeteer/chrome-headless-shell')
+// const folderAndFileList = getAllFilesInfo('/app/.cache/puppeteer/chrome-headless-shell')
 
-const [ appInfo ] = folderAndFileList.filter(item => item.name === 'chrome-headless-shell')
+// const [ appInfo ] = folderAndFileList.filter(item => item.name === 'chrome-headless-shell')
 
-console.log(appInfo, '-----')
+// console.log(appInfo, '-----')
 
 async function main() {
   let code = ''
@@ -70,18 +70,19 @@ async function main() {
 
 
 app.get('/', (req, res) => {
-  res.send(JSON.stringify(folderAndFileList, null, '\t'))
+  // res.send(JSON.stringify(folderAndFileList, null, '\t'))
+  res.send(__dirname)
 })
 
-app.get('/code', async (req, res) => {
-  const code = await main()
+// app.get('/code', async (req, res) => {
+//   const code = await main()
  
-  res.json({
-    code: 200,
-    data: code,
-    msg: '成功'
-  })
-})
+//   res.json({
+//     code: 200,
+//     data: code,
+//     msg: '成功'
+//   })
+// })
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
