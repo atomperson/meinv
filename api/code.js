@@ -40,7 +40,7 @@ const isExists = fs.existsSync(chromePath)
 
 function getChromePath() {
     if(!isExists) {
-        const chrome = childProcess.execSync('@puppeteer/browsers install chrome-headless-shell').toString()
+        const chrome = childProcess.execSync('npx @puppeteer/browsers install chrome-headless-shell').toString()
         console.log('---- install path ----')
         console.log(chrome)
     }
