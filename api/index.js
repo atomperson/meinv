@@ -2,6 +2,10 @@ import puppeteer from 'puppeteer'
 
 export default (req, res) => {
   console.log('----- meizi project ----')
-
-  console.log(puppeteer)
+  
+  res.json({
+    code: 200,
+    data: puppeteer.configuration.cacheDirectory,
+    msg: '成功'
+  })
 }
