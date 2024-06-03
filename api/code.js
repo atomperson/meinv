@@ -9,7 +9,7 @@ const isExists = fs.existsSync(chromePath)
 
 console.log('---dir', fs.readdirSync(__dirname))
 
-console.log('---dir-', fs.readdirSync(path.join(__dirname, '../'))
+console.log('---dir-', fs.readdirSync(path.join(__dirname, '../')))
 
 // function getAllFilesInfo(dirPath) {
 //     const itemsInfo = [];
