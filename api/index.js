@@ -4,6 +4,8 @@ export default (req, res) => {
   console.log('----- meizi project ----')
 
   console.log(puppeteer.configuration.cacheDirectory)
+
+  res.setHeader("Content-Type", "application/json")
   
   res.write(JSON.stringify({
     code: 200,
