@@ -3,9 +3,9 @@ import path from 'path'
 import childProcess from 'child_process'
 import puppeteer from 'puppeteer'
 
-// const chromePath = path.join(puppeteer.configuration.cacheDirectory ,'chrome-headless-shell')
+const chromePath = path.join(__dirname ,'chrome-headless-shell')
 
-// const isExists = fs.existsSync(chromePath)
+const isExists = fs.existsSync(chromePath)
 
 // function getAllFilesInfo(dirPath) {
 //     const itemsInfo = [];
@@ -38,28 +38,28 @@ import puppeteer from 'puppeteer'
 //     return itemsInfo;
 // }
 
-// function getChromePath() {
-//     if(!isExists) {
-//         const chrome = childProcess.execSync('node node_modules/puppeteer/install.mjs').toString()
-//         console.log('---- install path ----')
-//         console.log(chrome)
-//     }
-//     return getAllFilesInfo(chromePath)
-// }
-
-// const folderAndFileList = getChromePath()
-
-async function main() {
-    const browserFetcher = puppeteer.createBrowserFetcher()
-
-    const browserList = await browserFetcher.localRevisions()
-
-    console.log(browserList)
+function getChromePath() {
+    if(!isExists) {
+        const chrome = childProcess.execSync('@puppeteer/browsers install chrome-headless-shell').toString()
+        console.log('---- install path ----')
+        console.log(chrome)
+    }
+    return getAllFilesInfo(chromePath)
 }
+
+const folderAndFileList = getChromePath()
+
+// async function main() {
+//     const browserFetcher = puppeteer.createBrowserFetcher()
+
+//     const browserList = await browserFetcher.localRevisions()
+
+//     console.log(browserList)
+// }
 
 
 export default async () => {
-  await main()
+  // await main()
  
   return {
     body: JSON.stringify({ code: 200, data: 'xx--xx--xx', msg: '成功' }),
