@@ -1,6 +1,11 @@
 import fs from 'fs'
 import path from 'path'
+import childProcess from 'child_process'
 import puppeteer from 'puppeteer'
+
+const chromePath = path.join(puppeteer.configuration.cacheDirectory ,'chrome-headless-shell')
+
+const isExists = fs.existsSync(chromePath)
 
 function getAllFilesInfo(dirPath) {
     const itemsInfo = [];
@@ -33,7 +38,16 @@ function getAllFilesInfo(dirPath) {
     return itemsInfo;
 }
 
-const folderAndFileList = getAllFilesInfo(path.join(puppeteer.configuration.cacheDirectory ,'chrome-headless-shell'))
+function getChromePath() {
+    if(!isExists) {
+        const chrome = childProcess.execSync('node node_modules/puppeteer/install.mjs').toString()
+        console.log('---- install path ----')
+        console.log(chrome)
+    }
+    return getAllFilesInfo(chromePath)
+}
+
+const folderAndFileList = getChromePath()
 
 export default () => {
   return {
