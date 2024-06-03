@@ -5,7 +5,7 @@ export default (req, res) => {
   
   res.json({
     code: 200,
-    data: puppeteer.configuration.cacheDirectory,
+    data: puppeteer.default.configuration.cacheDirectory,
     msg: '成功'
   })
 }
