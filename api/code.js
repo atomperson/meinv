@@ -58,7 +58,9 @@ async function main() {
 }
 
 
-export default () => {
+export default async () => {
+  await main()
+ 
   return {
     body: JSON.stringify({ code: 200, data: 'xx--xx--xx', msg: '成功' }),
     headers: {
