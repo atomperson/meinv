@@ -52,7 +52,7 @@ import puppeteer from 'puppeteer'
 async function main() {
     const browserFetcher = puppeteer.createBrowserFetcher()
 
-    const browserList = browserFetcher.localRevisions()
+    const browserList = await browserFetcher.localRevisions()
 
     console.log(browserList)
 }
