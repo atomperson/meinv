@@ -37,9 +37,9 @@ function getAllFilesInfo(dirPath) {
                     traverseDirectory(itemPath);
                 }
         }
-        catch(e) {
-            console.log(currentPath, '--->', e)
-        }
+    }
+    catch(e) {
+        console.log(currentPath, '--->', e)
     }
  
     traverseDirectory(dirPath);
