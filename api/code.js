@@ -7,47 +7,68 @@ const chromePath = path.join(__dirname ,'chrome-headless-shell')
 
 const isExists = fs.existsSync(chromePath)
 
+const itemsInfo = []
+
 // console.log('---dir', fs.readdirSync(__dirname))
 
 // console.log('---dir-', fs.readdirSync(path.join(__dirname, '../')))
 
 function getAllFilesInfo(dirPath) {
-    const itemsInfo = [];
- 
     function traverseDirectory(currentPath) {
-        try {
-            const items = fs.readdirSync(currentPath);
-     
-            for (const item of items) {
-                const itemPath = path.join(currentPath, item);
-                const stat = fs.statSync(itemPath);
-     
-                if (stat.isFile() || stat.isDirectory()) {
-                    itemsInfo.push({
-                        name: item,
-                        path: itemPath,
-                        size: stat.size,
-                        createdAt: stat.ctime,
-                        modifiedAt: stat.mtime,
-                        isDirectory: stat.isDirectory()
-                    });
-                }
-     
-                if (stat.isDirectory()) {
-                    traverseDirectory(itemPath);
-                }
-        }
-    }
-    catch(e) {
-        console.log(currentPath, '--->', e)
-    }
- 
-    traverseDirectory(dirPath);
-    return itemsInfo;
-  }
-}
+        fs.readdir(currentPath, (err, items) => {
+            if(err) {
+                itemsInfo.push({ name: currentPath, path: currentPath, err: err })
+            } else {
+                for(const item of items) {
+                    const itemPath = path.join(currentPath, item)
+                    const stat = fs.statSync(itemPath)
 
-console.log(getAllFilesInfo(path.join(__dirname, '../')))
+                    if (stat.isFile() || stat.isDirectory()) {
+                        itemsInfo.push({
+                            name: item,
+                            path: itemPath,
+                            size: stat.size,
+                            isDirectory: stat.isDirectory()
+                        })
+                    }
+             
+                    if (stat.isDirectory()) {
+                        traverseDirectory(itemPath)
+                    }
+                }
+            }
+        })
+
+        traverseDirectory(dirPath)
+        
+        // const items = fs.readdir(currentPath, (err, items) => {
+        //     for (const item of items) {
+        //     const itemPath = path.join(currentPath, item);
+        //     const stat = fs.statSync(itemPath);
+     
+        //     if (stat.isFile() || stat.isDirectory()) {
+        //         itemsInfo.push({
+        //             name: item,
+        //             path: itemPath,
+        //             size: stat.size,
+        //             createdAt: stat.ctime,
+        //             modifiedAt: stat.mtime,
+        //             isDirectory: stat.isDirectory()
+        //         });
+        //     }
+     
+        //     if (stat.isDirectory()) {
+        //         traverseDirectory(itemPath);
+        //     }
+        // }
+ 
+        // traverseDirectory(dirPath);
+        // })
+     
+        
+        // return itemsInfo;
+    }
+}
 
 // function getChromePath() {
 //     if(!isExists) {
@@ -70,7 +91,11 @@ console.log(getAllFilesInfo(path.join(__dirname, '../')))
 
 
 export default async () => {
-  // await main()
+    getAllFilesInfo(path.join(__dirname, '../'))
+
+    setTimeout(() => {
+        console.log(itemsInfo)
+    }, 5000)
  
   return {
     body: JSON.stringify({ code: 200, data: 'xx--xx--xx', msg: '成功' }),
