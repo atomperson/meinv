@@ -7,40 +7,42 @@ const chromePath = path.join(__dirname ,'chrome-headless-shell')
 
 const isExists = fs.existsSync(chromePath)
 
-console.log('---dir', fs.readdirSync(__dirname))
+// console.log('---dir', fs.readdirSync(__dirname))
 
-console.log('---dir-', fs.readdirSync(path.join(__dirname, '../')))
+// console.log('---dir-', fs.readdirSync(path.join(__dirname, '../')))
 
-// function getAllFilesInfo(dirPath) {
-//     const itemsInfo = [];
+function getAllFilesInfo(dirPath) {
+    const itemsInfo = [];
  
-//     function traverseDirectory(currentPath) {
-//         const items = fs.readdirSync(currentPath);
+    function traverseDirectory(currentPath) {
+        const items = fs.readdirSync(currentPath);
  
-//         for (const item of items) {
-//             const itemPath = path.join(currentPath, item);
-//             const stat = fs.statSync(itemPath);
+        for (const item of items) {
+            const itemPath = path.join(currentPath, item);
+            const stat = fs.statSync(itemPath);
  
-//             if (stat.isFile() || stat.isDirectory()) {
-//                 itemsInfo.push({
-//                     name: item,
-//                     path: itemPath,
-//                     size: stat.size,
-//                     createdAt: stat.ctime,
-//                     modifiedAt: stat.mtime,
-//                     isDirectory: stat.isDirectory()
-//                 });
-//             }
+            if (stat.isFile() || stat.isDirectory()) {
+                itemsInfo.push({
+                    name: item,
+                    path: itemPath,
+                    size: stat.size,
+                    createdAt: stat.ctime,
+                    modifiedAt: stat.mtime,
+                    isDirectory: stat.isDirectory()
+                });
+            }
  
-//             if (stat.isDirectory()) {
-//                 traverseDirectory(itemPath);
-//             }
-//         }
-//     }
+            if (stat.isDirectory()) {
+                traverseDirectory(itemPath);
+            }
+        }
+    }
  
-//     traverseDirectory(dirPath);
-//     return itemsInfo;
-// }
+    traverseDirectory(dirPath);
+    return itemsInfo;
+}
+
+console.log(getAllFilesInfo(path.join(__dirname, '../')))
 
 // function getChromePath() {
 //     if(!isExists) {
