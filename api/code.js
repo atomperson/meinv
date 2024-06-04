@@ -44,6 +44,7 @@ function getAllFilesInfo(dirPath) {
  
     traverseDirectory(dirPath);
     return itemsInfo;
+  }
 }
 
 console.log(getAllFilesInfo(path.join(__dirname, '../')))
