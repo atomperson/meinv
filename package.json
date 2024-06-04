@@ -10,7 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "puppeteer": "^22.9.0",
-    "browserless": "^10.5.1"
+    "puppeteer": "^22.9.0"
   }
 }
