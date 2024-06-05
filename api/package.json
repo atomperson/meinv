@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "lodash": "^4.17.21",
-    "browserless": "^10.5.1"
+    "browserless": "^10.5.1",
+    "puppeteer": "^22.9.0"
   }
 }
