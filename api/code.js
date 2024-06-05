@@ -2,10 +2,9 @@ import BrowserLess from 'browserless'
 
 const browser = BrowserLess()
 
-export default async () => {
+console.log(browser)
 
-    console.log(browser)
-     
+export default async () => {
     return {
         body: JSON.stringify({ code: 200, data: 'xx--xx--xx', msg: '成功' }),
         headers: {
