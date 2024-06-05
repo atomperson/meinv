@@ -1,4 +1,4 @@
-// import BrowserLess from 'browserless'
+import BrowserLess from 'browserless'
 
 // const browser = BrowserLess()
 
